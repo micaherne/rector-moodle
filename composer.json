@@ -1,0 +1,28 @@
+{
+    "name": "micaherne/rector-moodle",
+    "description": "Rector config for upgrading Moodle plugins",
+    "type": "rector-extension",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "RectorMoodle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Michael Aherne",
+            "email": "michael.aherne@strath.ac.uk"
+        }
+    ],
+    "require-dev": {
+        "rector/rector": "^0.19.5"
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse --ansi"
+    },
+    "config": {
+        "allow-plugins": {
+            "rector/extension-installer": true
+        }
+    }
+}
