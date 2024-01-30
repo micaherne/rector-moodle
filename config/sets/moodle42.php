@@ -71,55 +71,55 @@ return static function (RectorConfig $rectorConfig): void {
         [
             new FuncCallToStaticCall(
                 'cron_setup_user',
-                '\core\cron',
+                'core\cron',
                 'setup_user'
             ),
 
             new FuncCallToStaticCall(
                 'cron_run',
-                '\core\cron',
+                'core\cron',
                 'run_main_process'
             ),
 
             new FuncCallToStaticCall(
                 'cron_run_scheduled_tasks',
-                '\core\cron',
+                'core\cron',
                 'run_scheduled_tasks'
             ),
 
             new FuncCallToStaticCall(
                 'cron_run_adhoc_task',
-                '\core\cron',
+                'core\cron',
                 'run_adhoc_tasks'
             ),
 
             new FuncCallToStaticCall(
                 'cron_run_inner_scheduled_task',
-                '\core\cron',
+                'core\cron',
                 'run_inner_scheduled_task'
             ),
 
             new FuncCallToStaticCall(
                 'cron_run_inner_adhoc_task',
-                '\core\cron',
+                'core\cron',
                 'run_inner_adhoc_task'
             ),
 
             new FuncCallToStaticCall(
                 'cron_set_process_title',
-                '\core\cron',
+                'core\cron',
                 'set_process_title'
             ),
 
             new FuncCallToStaticCall(
                 'cron_trace_time_and_memory',
-                '\core\cron',
+                'core\cron',
                 'trace_time_and_memory'
             ),
 
             new FuncCallToStaticCall(
                 'cron_prepare_core_renderer',
-                '\core\cron',
+                'core\cron',
                 'prepare_core_renderer'
             ),
 
@@ -133,7 +133,7 @@ return static function (RectorConfig $rectorConfig): void {
         [
             new FuncCallToStaticCall(
                 'get_grade_item_id',
-                '\behat_grades',
+                'behat_grades',
                 'get_grade_item_id'
             )
 
