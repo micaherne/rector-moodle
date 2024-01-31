@@ -146,12 +146,12 @@ return static function (RectorConfig $rectorConfig): void {
     // See https://github.com/moodle/moodle/blob/v4.2.0/lib/upgrade.txt#L6
     // This should maybe be a separate option somehow.
 
-    // TODO: The move to grade_calculator in the quiz hasn't been done here as it requires
+    // The move to grade_calculator in the quiz hasn't been done here as it requires
     // constructing the object first so is not an easy function rename or whatever.
     // (e.g. quiz_update_sumgrades)
 
     // Add renamed classes extracted from Moodle.
-    $renamedClasses = require_once __DIR__ . '/../extracted/moodle-v4.2.0.php';
+    $renamedClasses = require_once __DIR__ . '/../extracted/renamed-classes-v4.2.0.php';
     $rectorConfig->ruleWithConfiguration(
         RenameClassRector::class,
         $renamedClasses

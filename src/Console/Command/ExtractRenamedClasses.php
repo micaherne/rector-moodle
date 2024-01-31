@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace RectorMoodle\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -18,7 +19,9 @@ final class ExtractRenamedClasses extends Command
     protected function configure()
     {
         $this->setName("extract-renamed-classes")
-            ->setDescription("Extract an array of all renamed classes from Moodle");
+            ->setDescription("Extract an array of all renamed classes from Moodle")
+            ->addArgument('moodle-tag', InputArgument::REQUIRED, 'The tag to extract from');
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -31,6 +34,8 @@ final class ExtractRenamedClasses extends Command
             return Command::FAILURE;
         }
 
+        $moodleTag = $input->getArgument('moodle-tag');
+
         $fs = new Filesystem();
 
         $repoLocation = $fs->tempnam(sys_get_temp_dir(), 'mdl');
@@ -39,7 +44,7 @@ final class ExtractRenamedClasses extends Command
         try {
             $output->writeln("Cloning Moodle to $repoLocation");
 
-            $process = new Process(['git', 'clone', '--depth', '1', '--branch', 'v4.2.0', 'git://git.moodle.org/moodle.git', $repoLocation]);
+            $process = new Process(['git', 'clone', '--depth', '1', '--branch', $moodleTag, 'git://git.moodle.org/moodle.git', $repoLocation]);
             $process->setTimeout(300);
             $process->mustRun();
         } catch (ProcessFailedException $e) {
@@ -61,7 +66,7 @@ final class ExtractRenamedClasses extends Command
 
         $output->writeln(print_r($renames, true));
 
-        $outputFile = __DIR__ . '/../../../config/extracted/moodle-v4.2.0.php';
+        $outputFile = __DIR__ . '/../../../config/extracted/renamed-classes-' . $moodleTag . '.php';
 
         file_put_contents($outputFile, '<?php return ' . var_export($renames, true) . ';');
 
