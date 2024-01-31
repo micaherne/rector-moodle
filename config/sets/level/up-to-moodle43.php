@@ -8,5 +8,5 @@ use RectorMoodle\Set\MoodleLevelSetList;
 use RectorMoodle\Set\MoodleSetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->sets([MoodleSetList::MOODLE_42, MoodleSetList::MOODLE_43]);
+    $rectorConfig->sets([MoodleSetList::MOODLE_43, MoodleSetList::MOODLE_42]);
 };
