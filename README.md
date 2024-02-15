@@ -38,7 +38,7 @@ The following rule sets are available:
 
 * **MoodleSetList::MOODLE_42** - Update features introduced in Moodle 4.2
 * **MoodleSetList::MOODLE_43** - Update features introduced in Moodle 4.3
-* **MoodleSetList::RENAME_CONTEXT_CLASSES** - Rename context classes to the new namespaced names introduced in Moodle 4.2. This is separate from the Moodle 4.2 set as the documentation strongly implies that there is no requirement to update from the old \context_* class names, and that the class aliases for backward compatibility will be retained indefinitely.
+* **MoodleSetList::RENAME_CONTEXT_CLASSES** - Rename context classes to the new namespaced names introduced in Moodle 4.2, and convert level constants like CONTEXT_COURSE to the corresponding new LEVEL class constant. This is separate from the Moodle 4.2 set as the documentation strongly implies that there is no requirement to update from the old \context_* class names, and that the class aliases for backward compatibility will be retained indefinitely.
 * **MoodleLevelSetList::UP_TO_MOODLE_43** - Apply both the Moodle 4.2 and 4.3 updates.
 
 ## Coverage
