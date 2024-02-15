@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace RectorMoodle\Console\Command;
@@ -21,7 +22,6 @@ final class ExtractRenamedClasses extends Command
         $this->setName("extract-renamed-classes")
             ->setDescription("Extract an array of all renamed classes from Moodle")
             ->addArgument('moodle-tag', InputArgument::REQUIRED, 'The tag to extract from');
-
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -44,7 +44,18 @@ final class ExtractRenamedClasses extends Command
         try {
             $output->writeln("Cloning Moodle to $repoLocation");
 
-            $process = new Process(['git', 'clone', '--depth', '1', '--branch', $moodleTag, 'git://git.moodle.org/moodle.git', $repoLocation]);
+            $process = new Process(
+                [
+                    'git',
+                    'clone',
+                    '--depth',
+                    '1',
+                    '--branch',
+                    $moodleTag,
+                    'git://git.moodle.org/moodle.git',
+                    $repoLocation
+                ]
+            );
             $process->setTimeout(300);
             $process->mustRun();
         } catch (ProcessFailedException $e) {

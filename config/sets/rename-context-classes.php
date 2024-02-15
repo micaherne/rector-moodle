@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Renaming\Rector\Name\RenameClassRector;
+use RectorMoodle\Rule\Transform\Rector\ConstFetchToClassConstFetchRector;
+use RectorMoodle\Rule\Transform\ValueObject\ConstFetchToClassConstFetch;
 
 // Rename context classes (e.g. context_module to core\context\module).
 // This is separate from the Moodle version sets as there are backward-compatible
@@ -22,6 +24,36 @@ return static function (RectorConfig $rectorConfig): void {
             'context_module' => 'core\context\module',
             'context_system' => 'core\context\system',
             'context_user' => 'core\context\user',
+        ]
+    );
+
+    $rectorConfig->ruleWithConfiguration(
+        ConstFetchToClassConstFetchRector::class,
+        [
+            new ConstFetchToClassConstFetch('CONTEXT_SYSTEM',
+            'core\context\system',
+            'LEVEL'),
+
+            new ConstFetchToClassConstFetch('CONTEXT_USER',
+            'core\context\user',
+            'LEVEL'),
+
+            new ConstFetchToClassConstFetch('CONTEXT_COURSECAT',
+            'core\context\coursecat',
+            'LEVEL'),
+
+            new ConstFetchToClassConstFetch('CONTEXT_COURSE',
+            'core\context\course',
+            'LEVEL'),
+
+            new ConstFetchToClassConstFetch('CONTEXT_MODULE',
+            'core\context\module',
+            'LEVEL'),
+
+            new ConstFetchToClassConstFetch('CONTEXT_BLOCK',
+            'core\context\block',
+            'LEVEL'),
+
         ]
     );
 };
