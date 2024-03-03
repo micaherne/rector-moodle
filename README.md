@@ -57,6 +57,20 @@ where the phpstan.neon file contains something like:
         scanDirectories:
             - /path/to/moodle
 
+There is a helper class that can be used to generate a PHPStan configuration file for a Moodle codebase. 
+
+    use Rector\CodeQuality\Rector\Class_\CompleteDynamicPropertiesRector;
+    use Rector\Config\RectorConfig;
+    use RectorMoodle\Config\ConfigHelper;
+
+    return function (RectorConfig $rectorConfig) {
+
+        $configHelper = new ConfigHelper();
+        $rectorConfig->phpstanConfig($configHelper->getPhpStanConfig(__DIR__ . '/../../moodle'));
+
+        $rectorConfig->rule(CompleteDynamicPropertiesRector::class);
+    };
+
 ### Class aliases
 
 Note that the above method of symbol discovery does not deal with class aliases. Ensure that your code does not contain any classes that are aliases in the Moodle codebase. 
