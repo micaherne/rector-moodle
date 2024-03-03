@@ -33,7 +33,7 @@ return static function (RectorConfig $rectorConfig): void {
         FuncCallToStaticCallRector::class,
         [
             // For external_format_*, the new methods don't support id being passed for the context
-            // parameter. There's not much we can do about this apart from hope it is picked up in 
+            // parameter. There's not much we can do about this apart from hope it is picked up in
             // unit tests.
             new FuncCallToStaticCall(
                 'external_format_string',
@@ -151,7 +151,7 @@ return static function (RectorConfig $rectorConfig): void {
     // (e.g. quiz_update_sumgrades)
 
     // Add renamed classes extracted from Moodle.
-    $renamedClasses = require __DIR__ . '/../extracted/renamed-classes-v4.2.0.php';
+    $renamedClasses = require __DIR__ . '/../extracted/renamed-classes/v4.2.0.php';
     $rectorConfig->ruleWithConfiguration(
         RenameClassRector::class,
         $renamedClasses

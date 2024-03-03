@@ -16,7 +16,6 @@ use Symfony\Component\Process\Process;
 
 final class ExtractRenamedClasses extends Command
 {
-
     protected function configure()
     {
         $this->setName("extract-renamed-classes")
@@ -77,7 +76,9 @@ final class ExtractRenamedClasses extends Command
 
         $output->writeln(print_r($renames, true));
 
-        $outputFile = __DIR__ . '/../../../config/extracted/renamed-classes-' . $moodleTag . '.php';
+        $outputFile = __DIR__ . '/../../../config/extracted/renamed-classes/' . $moodleTag . '.php';
+
+        $fs->mkdir(dirname($outputFile));
 
         file_put_contents($outputFile, '<?php return ' . var_export($renames, true) . ';');
 

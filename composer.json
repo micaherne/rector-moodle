@@ -8,6 +8,11 @@
             "RectorMoodle\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "RectorMoodle\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Michael Aherne",

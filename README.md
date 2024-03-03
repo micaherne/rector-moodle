@@ -41,6 +41,28 @@ The following rule sets are available:
 * **MoodleSetList::RENAME_CONTEXT_CLASSES** - Rename context classes to the new namespaced names introduced in Moodle 4.2, and convert level constants like CONTEXT_COURSE to the corresponding new LEVEL class constant. This is separate from the Moodle 4.2 set as the documentation strongly implies that there is no requirement to update from the old \context_* class names, and that the class aliases for backward compatibility will be retained indefinitely.
 * **MoodleLevelSetList::UP_TO_MOODLE_43** - Apply both the Moodle 4.2 and 4.3 updates.
 
+## Symbol discovery
+
+Some rules in Rector require knowledge of the class hierarchy or other symbols (e.g. [CompleteDynamicPropertiesRector](https://github.com/rectorphp/rector/blob/main/rules/CodeQuality/Rector/Class_/CompleteDynamicPropertiesRector.php)). For these rules to work correctly, the whole Moodle codebase must be scanned. This appears as if it should be possible by using the `autoloadPaths()` method on the RectorConfig object, but this does not seem to work. An alternative to this is to use the `phpstanConfig()` method to specify a PHPStan configuration file that includes the Moodle codebase in its scanDirectories parameter. For example:
+
+    return RectorConfig::configure()
+        ->withSets([
+            MoodleLevelSetList::UP_TO_MOODLE_43,
+        ])
+        ->phpstanConfig(__DIR__ . '/phpstan.neon');
+
+where the phpstan.neon file contains something like:
+
+    parameters:
+        scanDirectories:
+            - /path/to/moodle
+
+### Class aliases
+
+Note that the above method of symbol discovery does not deal with class aliases. Ensure that your code does not contain any classes that are aliases in the Moodle codebase. 
+
+In particular, you should run the UP_TO_MOODLE_* rule set for the version of Moodle you are using, as well as the RENAME_CONTEXT_CLASSES set if you are working with Moodle 4.2 or above.
+
 ## Coverage
 
 The rule sets mainly concentrate on updating class names where these are moved (e.g. as defined in the renamedclasses.php files), or where functions are moved to static methods on classes but retain the same signature.
