@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "rector/rector": "^1.0"
+        "rector/rector": "^1.0 >=1.0.2"
     },
     "require-dev": {
         "symfony/console": "^7.0",
