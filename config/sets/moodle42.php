@@ -151,7 +151,7 @@ return static function (RectorConfig $rectorConfig): void {
     // (e.g. quiz_update_sumgrades)
 
     // Add renamed classes extracted from Moodle.
-    $renamedClasses = require __DIR__ . '/../extracted/renamed-classes/v4.2.0.php';
+    $renamedClasses = require __DIR__ . '/../extracted/renamed-classes-v4.2.0.php';
     $rectorConfig->ruleWithConfiguration(
         RenameClassRector::class,
         $renamedClasses
