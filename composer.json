@@ -32,7 +32,8 @@
     },
     "scripts": {
         "phpstan": "vendor/bin/phpstan analyse --ansi",
-        "test": "vendor/bin/phpunit tests"
+        "rector": "vendor/bin/rector process",
+        "tests": "vendor/bin/phpunit tests"
     },
     "config": {
         "allow-plugins": {

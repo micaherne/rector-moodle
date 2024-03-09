@@ -4,6 +4,7 @@ parameters:
     reportUnmatchedIgnoredErrors: false
 
     paths:
+        - bin
         - config
         - src
         - tests

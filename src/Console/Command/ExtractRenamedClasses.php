@@ -16,7 +16,7 @@ use Symfony\Component\Process\Process;
 
 final class ExtractRenamedClasses extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName("extract-renamed-classes")
             ->setDescription("Extract an array of all renamed classes from Moodle")
