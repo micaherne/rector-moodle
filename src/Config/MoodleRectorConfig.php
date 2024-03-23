@@ -5,11 +5,12 @@ namespace RectorMoodle\Config;
 use Composer\InstalledVersions;
 use InvalidArgumentException;
 use Rector\Config\RectorConfig;
+use Rector\Configuration\RectorConfigBuilder;
 use RuntimeException;
 use Symfony\Component\Filesystem\Filesystem;
 
 class MoodleRectorConfig {
-    public static function configure(string $moodlePath, string $moodleVersion) {
+    public static function configure(string $moodlePath): RectorConfigBuilder {
 
         $moodleRootReal = realpath($moodlePath);
         if ($moodleRootReal === false) {
@@ -30,7 +31,6 @@ class MoodleRectorConfig {
         parameters:
             moodle:
                 rootDirectory: $moodlePath
-                version: $moodleVersion
         EOT;
 
         // We need to use Filesystem here to create a temporary file with the correct extension.

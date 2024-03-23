@@ -7,4 +7,4 @@ use Rector\Config\RectorConfig;
 return RectorConfig::configure()
     ->withPaths(['src', 'tests'])
     ->withPhpSets()
-    ->withPreparedSets(deadCode: true, codeQuality: true, strictBooleans: true, typeDeclarations: true);
+    ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations: true, strictBooleans: true);
