@@ -39,7 +39,7 @@ class MoodleRectorConfig {
         $configFile = $fs->tempnam(sys_get_temp_dir(), 'phpstan', '.neon');
         $fs->dumpFile($configFile, $phpStanConfig);
 
-        register_shutdown_function(function() use ($configFile) {
+        register_shutdown_function(function() use ($configFile): void {
             unlink($configFile);
         });
 
