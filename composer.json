@@ -3,6 +3,7 @@
     "description": "Rector config for upgrading Moodle plugins",
     "type": "rector-extension",
     "license": "GPL-3.0-or-later",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "RectorMoodle\\": "src/"
@@ -21,7 +22,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "rector/rector": "^1.0 >=1.0.2"
+        "rector/rector": "^1.0 >=1.0.2",
+        "micaherne/phpstan-moodle": "dev-main"
     },
     "require-dev": {
         "symfony/console": "^7.0",
