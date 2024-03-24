@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.0",
         "rector/rector": "^1.0 >=1.0.2"
     },
     "require-dev": {

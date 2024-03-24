@@ -8,3 +8,7 @@ parameters:
         - config
         - src
         - tests
+
+    # PHPStan doesn't appear to find InstalledVersions by itself.
+    scanFiles:
+    	- vendor/composer/InstalledVersions.php
