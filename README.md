@@ -5,16 +5,7 @@ Note that this is a work in progress and does not provide a comprehensive migrat
 
 ## Install
 
-Rector is installed using Composer, and this package should be installed similarly. It is not yet in Packagist so a repository entry is required:
-
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/micaherne/rector-moodle.git"
-        }
-    ]
-
-Then add a development dependency:
+Rector is installed using Composer, and this package should be installed similarly. Add a development dependency:
 
     composer require --dev micaherne/rector-moodle
 
