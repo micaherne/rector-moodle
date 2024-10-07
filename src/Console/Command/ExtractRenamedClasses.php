@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RectorMoodle\Console\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,14 +14,15 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-
+#[AsCommand(
+    name: 'extract-renamed-classes',
+    description: 'Extract an array of all renamed classes from Moodle'
+)]
 final class ExtractRenamedClasses extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
-        $this->setName("extract-renamed-classes")
-            ->setDescription("Extract an array of all renamed classes from Moodle")
-            ->addArgument('moodle-tag', InputArgument::REQUIRED, 'The tag to extract from');
+        $this->addArgument('moodle-tag', InputArgument::REQUIRED, 'The tag to extract from');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
