@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace RectorMoodle\Set;
 
-use Rector\Set\Contract\SetListInterface;
-
-final class MoodleSetList implements SetListInterface
+final class MoodleSetList
 {
 
     final public const MOODLE_42 = __DIR__ . "/../../config/sets/moodle42.php";

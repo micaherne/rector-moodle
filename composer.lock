@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8001882486510638841cc6b61b314c46",
+    "content-hash": "09e59d7052c42d0d01e3d774d4a29436",
     "packages": [
         {
             "name": "micaherne/phpstan-moodle",
@@ -12,23 +12,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/micaherne/phpstan-moodle.git",
-                "reference": "b2f2e46a5b5dbfbcb19bd203de483bdc3f1f3a0d"
+                "reference": "6ed6f40fe81626c964cc684df2a3c933bade76ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micaherne/phpstan-moodle/zipball/b2f2e46a5b5dbfbcb19bd203de483bdc3f1f3a0d",
-                "reference": "b2f2e46a5b5dbfbcb19bd203de483bdc3f1f3a0d",
+                "url": "https://api.github.com/repos/micaherne/phpstan-moodle/zipball/6ed6f40fe81626c964cc684df2a3c933bade76ee",
+                "reference": "6ed6f40fe81626c964cc684df2a3c933bade76ee",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.0",
-                "phpstan/phpstan": "^1.10"
+                "php": "^8.2",
+                "phpstan/phpstan": "^2.0"
             },
             "require-dev": {
                 "nikic/php-parser": "^5.0",
                 "phpunit/phpunit": "^11.0",
                 "psr/log": "^3.0",
-                "rector/rector": "^1.0",
+                "rector/rector": "^2.0",
                 "symfony/console": "^7.0",
                 "symfony/filesystem": "^7.0",
                 "symfony/finder": "^7.0",
@@ -63,28 +63,29 @@
                 "issues": "https://github.com/micaherne/phpstan-moodle/issues",
                 "source": "https://github.com/micaherne/phpstan-moodle/tree/main"
             },
-            "time": "2024-07-07T22:37:54+00:00"
+            "time": "2025-01-07T12:43:51+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.x-dev",
+            "version": "2.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8b279431dcf5448bb3ea8323ca314074ddcd5274"
+                "reference": "af1722d817afa5e536fe6f947e7ef2ffdd93a91a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8b279431dcf5448bb3ea8323ca314074ddcd5274",
-                "reference": "8b279431dcf5448bb3ea8323ca314074ddcd5274",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/af1722d817afa5e536fe6f947e7ef2ffdd93a91a",
+                "reference": "af1722d817afa5e536fe6f947e7ef2ffdd93a91a",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
             },
+            "default-branch": true,
             "bin": [
                 "phpstan",
                 "phpstan.phar"
@@ -121,25 +122,25 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-07T10:13:49+00:00"
+            "time": "2025-01-07T10:45:20+00:00"
         },
         {
             "name": "rector/rector",
-            "version": "1.2.10",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "40f9cf38c05296bd32f444121336a521a293fa61"
+                "reference": "fa0cb009dc3df084bf549032ae4080a0481a2036"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/40f9cf38c05296bd32f444121336a521a293fa61",
-                "reference": "40f9cf38c05296bd32f444121336a521a293fa61",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/fa0cb009dc3df084bf549032ae4080a0481a2036",
+                "reference": "fa0cb009dc3df084bf549032ae4080a0481a2036",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0",
-                "phpstan/phpstan": "^1.12.5"
+                "php": "^7.4|^8.0",
+                "phpstan/phpstan": "^2.1.1"
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
@@ -172,7 +173,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/1.2.10"
+                "source": "https://github.com/rectorphp/rector/tree/2.0.6"
             },
             "funding": [
                 {
@@ -180,7 +181,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-08T13:59:10+00:00"
+            "time": "2025-01-06T10:38:36+00:00"
         },
         {
             "name": "symfony/filesystem",

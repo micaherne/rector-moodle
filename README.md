@@ -11,16 +11,18 @@ Rector is installed using Composer, and this package should be installed similar
 
 ## Configuration
 
+This library provides a configuration helper class that must be used to configure Rector correctly to understand
+Moodle classes. This is *essential* for many Rector rules as they can break your code if they are not aware of
+the Moodle class hierarchy.
+
 Rule sets can be added to your rector.php config file. For example:
 
-    use Rector\Config\RectorConfig;
+    use RectorMoodle\Config\MoodleRectorConfig;
     use RectorMoodle\Set\MoodleLevelSetList;
-    use RectorMoodle\Set\MoodleSetList;
-
-    return RectorConfig::configure()
+    
+    return MoodleRectorConfig::configure('/path/to/your/moodle/root')
         ->withSets([
-            MoodleLevelSetList::UP_TO_MOODLE_43,
-            MoodleSetList::RENAME_CONTEXT_CLASSES
+            MoodleLevelSetList::UP_TO_MOODLE_45
         ])
         ->withImportNames();
 
@@ -29,44 +31,29 @@ The following rule sets are available:
 
 * **MoodleSetList::MOODLE_42** - Update features introduced in Moodle 4.2
 * **MoodleSetList::MOODLE_43** - Update features introduced in Moodle 4.3
+* **MoodleSetList::MOODLE_44** - Update features introduced in Moodle 4.4
+* **MoodleSetList::MOODLE_45** - Update features introduced in Moodle 4.5
 * **MoodleSetList::RENAME_CONTEXT_CLASSES** - Rename context classes to the new namespaced names introduced in Moodle 4.2, and convert level constants like CONTEXT_COURSE to the corresponding new LEVEL class constant. This is separate from the Moodle 4.2 set as the documentation strongly implies that there is no requirement to update from the old \context_* class names, and that the class aliases for backward compatibility will be retained indefinitely.
 * **MoodleLevelSetList::UP_TO_MOODLE_43** - Apply both the Moodle 4.2 and 4.3 updates.
+* **MoodleLevelSetList::UP_TO_MOODLE_44** - Apply Moodle 4.2, 4.3 and 4.4 updates.
+* **MoodleLevelSetList::UP_TO_MOODLE_45** - Apply Moodle 4.2, 4.3, 4.4 and 4.5 updates.
 
-## Symbol discovery
+## A note on symbol discovery
 
-Some rules in Rector require knowledge of the class hierarchy or other symbols (e.g. [CompleteDynamicPropertiesRector](https://github.com/rectorphp/rector/blob/main/rules/CodeQuality/Rector/Class_/CompleteDynamicPropertiesRector.php)). For these rules to work correctly, the whole Moodle codebase must be scanned. This appears as if it should be possible by using the `autoloadPaths()` method on the RectorConfig object, but this does not seem to work. An alternative to this is to use the `phpstanConfig()` method to specify a PHPStan configuration file that includes the Moodle codebase in its scanDirectories parameter. For example:
+Some rules in Rector require knowledge of the class hierarchy or other symbols (e.g. [CompleteDynamicPropertiesRector](https://github.com/rectorphp/rector/blob/main/rules/CodeQuality/Rector/Class_/CompleteDynamicPropertiesRector.php)). 
 
-    return RectorConfig::configure()
-        ->withSets([
-            MoodleLevelSetList::UP_TO_MOODLE_43,
-        ])
-        ->phpstanConfig(__DIR__ . '/phpstan.neon');
+For these rules to work correctly, the whole Moodle codebase must be scanned.
+This appears as if it should be possible by using the `autoloadPaths()` method on the RectorConfig object, but this does not seem to work as expected. 
 
-where the phpstan.neon file contains something like:
-
-    parameters:
-        scanDirectories:
-            - /path/to/moodle
-
-There is a helper class that can be used to generate a PHPStan configuration file for a Moodle codebase. 
-
-    use Rector\CodeQuality\Rector\Class_\CompleteDynamicPropertiesRector;
-    use Rector\Config\RectorConfig;
-    use RectorMoodle\Config\ConfigHelper;
-
-    return function (RectorConfig $rectorConfig) {
-
-        $configHelper = new ConfigHelper();
-        $rectorConfig->phpstanConfig($configHelper->getPhpStanConfig(__DIR__ . '/../../moodle'));
-
-        $rectorConfig->rule(CompleteDynamicPropertiesRector::class);
-    };
+In addition to this, Rector must be aware of class aliases and the classes they point to. There is no way to do this 
+in PHPStan (which Rector uses for symbol discovery) through configuration, so the aliased classes must be loaded
+and the aliases created. This means that the `MoodleRectorConfig` class *actually runs some of your Moodle code*, 
+so please ensure that you are running this in a safe environment.
 
 ### Class aliases
 
-Note that the above method of symbol discovery does not deal with class aliases. Ensure that your code does not contain any classes that are aliases in the Moodle codebase. 
-
-In particular, you should run the UP_TO_MOODLE_* rule set for the version of Moodle you are using, as well as the RENAME_CONTEXT_CLASSES set if you are working with Moodle 4.2 or above.
+Note that the above method of symbol discovery only deals with class aliases in the core Moodle codebase,
+and if you have any in your own codebase, you will need to ensure that they are available to Rector.
 
 ## Coverage
 

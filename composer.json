@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "rector/rector": "^1.0 >=1.0.2",
+        "rector/rector": "^2.0",
         "micaherne/phpstan-moodle": "dev-main",
         "symfony/filesystem": "^v7.0"
     },
