@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
 use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Renaming\ValueObject\MethodCallRename;
 use Rector\Transform\Rector\FuncCall\FuncCallToStaticCallRector;
@@ -156,7 +157,7 @@ return static function (RectorConfig $rectorConfig): void {
     );
 
     // MDL-66151.
-    $rectorConfig->ruleWithConfiguration(MethodCallRename::class, [
+    $rectorConfig->ruleWithConfiguration(RenameMethodRector::class, [
         new MethodCallRename('core\session\manager', 'kill_all_sessions', 'destroy_all'),
         new MethodCallRename('core\session\manager', 'kill_session', 'destroy'),
         new MethodCallRename('core\session\manager', 'kill_sessions_for_auth_plugin', 'destroy_by_auth_plugin'),
