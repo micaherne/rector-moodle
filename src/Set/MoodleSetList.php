@@ -11,6 +11,8 @@ final class MoodleSetList
     final public const MOODLE_43 = __DIR__ . "/../../config/sets/moodle43.php";
     final public const MOODLE_44 = __DIR__ . "/../../config/sets/moodle44.php";
     final public const MOODLE_45 = __DIR__ . "/../../config/sets/moodle45.php";
+    final public const MOODLE_50 = __DIR__ . "/../../config/sets/moodle50.php";
+    final public const MOODLE_51 = __DIR__ . "/../../config/sets/moodle51.php";
 
     final public const RENAME_CONTEXT_CLASSES = __DIR__ . '/../../config/sets/rename-context-classes.php';
 
