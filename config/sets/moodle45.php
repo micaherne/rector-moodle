@@ -6,8 +6,6 @@ use Rector\Config\RectorConfig;
 use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
 use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Renaming\ValueObject\MethodCallRename;
-use Rector\Transform\Rector\FuncCall\FuncCallToStaticCallRector;
-use Rector\Transform\ValueObject\FuncCallToStaticCall;
 
 return static function (RectorConfig $rectorConfig): void {
 
@@ -56,11 +54,11 @@ return static function (RectorConfig $rectorConfig): void {
 
             // MDL-82183
             'action_link' => 'core\output\action_link',
-            'action_menu_filler' => 'core\output\action_menu\action_menu_filler',
-            'action_menu_link_primary' => 'core\output\action_menu\action_menu_link_primary',
-            'action_menu_link_secondary' => 'core\output\action_menu\action_menu_link_secondary',
-            'action_menu_link' => 'core\output\action_menu\action_menu_link',
-            'action_menu' => 'core\output\action_menu\action_menu',
+            'action_menu_filler' => 'core\output\action_menu\filler',
+            'action_menu_link_primary' => 'core\output\action_menu\link_primary',
+            'action_menu_link_secondary' => 'core\output\action_menu\link_secondary',
+            'action_menu_link' => 'core\output\action_menu\link',
+            'action_menu' => 'core\output\action_menu',
             'block_contents' => 'core_block\output\block_contents',
             'block_move_target' => 'core_block\output\block_move_target',
             'component_action' => 'core\output\actions\component_action',

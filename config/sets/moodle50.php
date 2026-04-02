@@ -17,4 +17,16 @@ return static function (RectorConfig $rectorConfig): void {
         $newrenames
     );
 
+    $rectorConfig->ruleWithConfiguration(
+        RenameClassRector::class,
+        [
+            // MDL-83968
+            'core\tests\route_testcase' => 'core\tests\router\route_testcase',
+            'core\router\mocking_route_loader' => 'core\tests\router\mocking_route_loader',
+
+            // MDL-84000
+            'core_reportbuilder_testcase' => 'core_reportbuilder\tests\core_reportbuilder_testcase',
+        ]
+    );
+
 };
